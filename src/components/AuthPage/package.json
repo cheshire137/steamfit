@@ -1,0 +1,6 @@
+{
+  "name": "AuthPage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./AuthPage.js"
+}
