@@ -12,7 +12,6 @@ import Router from 'react-routing/src/Router';
 import fetch from './core/fetch';
 import App from './components/App';
 import ContentPage from './components/ContentPage';
-import LoginPage from './components/LoginPage';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
 
@@ -21,8 +20,6 @@ const router = new Router(on => {
     const component = await next();
     return component && <App context={state.context}>{component}</App>;
   });
-
-  on('/login', async () => <LoginPage />);
 
   on('*', async (state) => {
     const response = await fetch(`/api/content?path=${state.path}`);
