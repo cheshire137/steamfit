@@ -1,0 +1,6 @@
+{
+  "name": "LocalStorage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./LocalStorage.js"
+}
