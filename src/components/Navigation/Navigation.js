@@ -23,7 +23,6 @@ class Navigation extends Component {
   render() {
     return (
       <div className={cx(s.root, this.props.className)} role="navigation">
-        <a className={s.link} href="/about" onClick={Link.handleClick}>About</a>
       </div>
     );
   }

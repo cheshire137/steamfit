@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import s from './HomePage.scss';
 import withStyles from '../../decorators/withStyles';
 
-const title = 'SteamFit';
+const title = 'Connect with Fitbit';
 
 @withStyles(s)
 class HomePage extends Component {
@@ -20,7 +20,7 @@ class HomePage extends Component {
       <div className={s.root}>
         <div className={s.container}>
           <h1>{title}</h1>
-          <p>Correlate your Steam activity with your Fitbit activity.</p>
+          <p></p>
         </div>
       </div>
     );
