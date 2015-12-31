@@ -1,0 +1,5 @@
+{
+  "fitbit": {
+    "clientId": "YOUR_FITBIT_APP_CLIENT_ID"
+  }
+}
