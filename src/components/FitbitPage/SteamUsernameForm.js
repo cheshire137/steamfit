@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom'
 import _ from 'underscore';
 import s from './FitbitPage.scss';
 
@@ -10,12 +11,13 @@ class SteamUsernameForm extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    // TODO: get input value, pass to onChange
-    // this.props.onChange();
+    var username = ReactDOM.findDOMNode(this.refs.username).value.trim();
+    this.props.onChange(username);
   }
 
   onInputChange(event) {
-    this.props.onChange(event.target.value);
+    var username = event.target.value.trim();
+    this.props.onChange(username);
   }
 
   render() {
@@ -24,7 +26,7 @@ class SteamUsernameForm extends Component {
         <label htmlFor="steam-username">
           Your Steam user name:
         </label>
-        <input type="text" id="steam-username" autofocus="autofocus" placeholder="e.g., cheshire137" onChange={this.onInputChange} />
+        <input type="text" ref="username" id="steam-username" autofocus="autofocus" placeholder="e.g., cheshire137" onChange={this.onInputChange} />
         <p className={s.helpBlock}>
           Your Steam profile must be public.
         </p>

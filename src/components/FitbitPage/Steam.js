@@ -9,13 +9,31 @@ class Steam extends Component {
   }
 
   onSteamUsernameChange(username) {
-    console.log(username);
+    if (typeof username === 'string' && username.length < 1) {
+      username = undefined;
+    }
+    this.setState({username: username});
+  }
+
+  clearSteamUsername(event) {
+    event.preventDefault();
+    this.setState({username: undefined});
   }
 
   render() {
+    var hasUsername = typeof this.state.username === 'string';
     return (
       <div className={s.steam}>
-        <SteamUsernameForm onChange={this.onSteamUsernameChange} />
+        {hasUsername ? (
+          <p>
+            Steam user name: {this.state.username}
+            <a href="#" onClick={this.clearSteamUsername.bind(this)}>
+              X
+            </a>
+          </p>
+        ) : (
+          <SteamUsernameForm onChange={this.onSteamUsernameChange.bind(this)} />
+        )}
       </div>
     );
   }
