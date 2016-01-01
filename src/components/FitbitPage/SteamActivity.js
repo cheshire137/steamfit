@@ -35,6 +35,7 @@ class SteamActivity extends Component {
         totalMinutes = totalMinutes + games[i].playtime_2weeks;
       }
       this.setState({games: games, totalGameMinutes: totalMinutes});
+      this.props.onSteamGameTimeUpdate(totalMinutes);
     }.bind(this));
   }
 

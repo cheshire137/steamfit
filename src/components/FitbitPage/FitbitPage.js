@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import s from './FitbitPage.scss';
+import cx from 'classnames';
 import withStyles from '../../decorators/withStyles';
 import LocalStorage from '../../stores/localStorage';
 import Fitbit from '../../actions/fitbit';
@@ -67,12 +68,25 @@ class FitbitPage extends Component {
     return total;
   }
 
+  onSteamGameTimeUpdate(totalMinutes) {
+    this.setState({totalGameMinutes: totalMinutes});
+  }
+
   render() {
     var haveProfile = typeof this.state.profile === 'object';
+    var haveGoals = typeof this.state.goalSteps === 'number' &&
+                    typeof this.state.steps === 'number';
+    var haveGameMinutes = typeof this.state.totalGameMinutes === 'number';
+    var metGoal = haveGoals && this.state.steps >= this.state.goalSteps;
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>{title}</h1>
+          {haveGoals && haveGameMinutes ? (
+            <p className={cx(s.alert, metGoal ? s.alertSuccess : s.alertDanger)}>
+              {metGoal ? 'Keep on gaming, you met your step goal!' : 'You should walk more and game less. :('}
+            </p>
+          ) : ''}
           <div className={s.row}>
             <div className={s.leftColumn}>
               <h2>
@@ -88,7 +102,7 @@ class FitbitPage extends Component {
                 <img className={s.steamLogo} src={require('./steam.png')} width="16" height="16" alt="Steam" />
                 Steam
               </h2>
-              <SteamInfo />
+              <SteamInfo onSteamGameTimeUpdate={this.onSteamGameTimeUpdate.bind(this)} />
             </div>
           </div>
         </div>

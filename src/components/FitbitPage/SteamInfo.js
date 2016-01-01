@@ -40,7 +40,9 @@ class SteamInfo extends Component {
     return (
       <div className={s.steam}>
         {hasUsername ? (
-          <SteamActivity username={this.state.username} saveSteamUsername={this.saveSteamUsername.bind(this)} />
+          <SteamActivity username={this.state.username}
+                         saveSteamUsername={this.saveSteamUsername.bind(this)}
+                         onSteamGameTimeUpdate={this.props.onSteamGameTimeUpdate} />
         ) : (
           <SteamUsernameForm onChange={this.onSteamUsernameChange.bind(this)} />
         )}
