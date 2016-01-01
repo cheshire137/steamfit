@@ -1,24 +1,11 @@
 @import '../variables.scss';
+@import './Profile.scss';
 @import './SteamActivity.scss';
 @import './SteamUsernameForm.scss';
 @import './SteamGame.scss';
 
 .root {
 
-}
-
-.fitbitLink {
-
-}
-
-.fitbitAvatarLink {
-  display: inline-block;
-  margin-right: 1rem;
-
-  & + .fitbitData {
-    display: inline-block;
-    vertical-align: top;
-  }
 }
 
 table {
@@ -67,27 +54,6 @@ table {
   padding: 0 0 40px;
   max-width: $max-content-width;
   margin: 0 auto;
-}
-
-.profile {
-  .avatar {
-    border-radius: 10px;
-    display: block;
-    width: 100px;
-  }
-}
-
-.steps {
-}
-
-.stepCount {
-  &.metGoal {
-    color: #3c763d;
-  }
-
-  &.notMetGoal {
-    color: #a94442;
-  }
 }
 
 .row {

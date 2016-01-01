@@ -1,0 +1,48 @@
+@import '../variables.scss';
+
+.logoutLink {
+  padding-left: 0.3em;
+  font-weight: 700;
+  text-decoration: none;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.fitbitLink {
+
+}
+
+.fitbitAvatarLink {
+  display: inline-block;
+  margin-right: 1rem;
+
+  & + .fitbitData {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.profile {
+  .avatar {
+    border-radius: 10px;
+    display: block;
+    width: 100px;
+  }
+}
+
+.steps {
+}
+
+.stepCount {
+  &.metGoal {
+    color: #3c763d;
+  }
+
+  &.notMetGoal {
+    color: #a94442;
+  }
+}
+
+.goalSteps {
+
+}

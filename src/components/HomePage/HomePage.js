@@ -10,7 +10,6 @@ const title = 'Connect with Fitbit';
 
 @withStyles(s)
 class HomePage extends Component {
-
   static contextTypes = {
     onSetTitle: PropTypes.func.isRequired,
   };
@@ -38,15 +37,19 @@ class HomePage extends Component {
         <div className={s.container}>
           <h1>{title}</h1>
           <p>
-            <a className={s.link} href={authUrl}>
-              Sign in to Fitbit
+            Sign in to Fitbit to compare how much you've been gaming with
+            how much you've been walking.
+          </p>
+          <p>
+            <a className={s.fitbitLink} href={authUrl}>
+              <img src={require('./fitbit.png')} width="16" height="16" alt="Fitbit" />
+              <span>Sign in to Fitbit</span>
             </a>
           </p>
         </div>
       </div>
     );
   }
-
 }
 
 export default HomePage;

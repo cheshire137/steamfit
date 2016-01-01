@@ -9,20 +9,6 @@
 
 @import '../variables.scss';
 
-a, a:link, a:visited {
-  color: color($secondary-color lightness(+15%));
-  text-decoration: none;
-  -webkit-transition: color 0.25s ease-in-out;
-  -moz-transition: color 0.25s ease-in-out;
-  -ms-transition: color 0.25s ease-in-out;
-  -o-transition: color 0.25s ease-in-out;
-  transition: color 0.25s ease-in-out;
-}
-
-a:hover, a:focus, a:active {
-  color: color($primary-color lightness(-15%));
-}
-
 .root {
   background: $secondary-color;
   color: #fff;

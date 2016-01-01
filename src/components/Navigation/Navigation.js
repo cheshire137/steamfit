@@ -15,7 +15,6 @@ import Link from '../Link';
 
 @withStyles(s)
 class Navigation extends Component {
-
   static propTypes = {
     className: PropTypes.string,
   };
@@ -23,11 +22,9 @@ class Navigation extends Component {
   render() {
     return (
       <div className={cx(s.root, this.props.className)} role="navigation">
-        <Link className={s.link} to="/logout">Log out</Link>
       </div>
     );
   }
-
 }
 
 export default Navigation;

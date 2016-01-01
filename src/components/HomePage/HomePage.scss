@@ -9,3 +9,42 @@
   padding: 0 0 40px;
   max-width: $max-content-width;
 }
+
+a.fitbitLink {
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 4px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  color: $fitbit-color;
+  background-color: #fff;
+  border-color: $fitbit-color;
+
+  img {
+    margin-right: 6px;
+  }
+
+  img, span {
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  &:hover, &:focus, &:active {
+    background-color: color($fitbit-color lightness(+50%));
+    color: color($fitbit-color lightness(-5%));
+  }
+}

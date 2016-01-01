@@ -14,17 +14,15 @@ import Link from '../Link';
 
 @withStyles(s)
 class Footer extends Component {
-
   render() {
     return (
-      <div className={s.root}>
+      <footer className={s.root}>
         <div className={s.container}>
           <span className={s.text}>&copy; 2016 Sarah Vessels</span>
         </div>
-      </div>
+      </footer>
     );
   }
-
 }
 
 export default Footer;

@@ -25,6 +25,35 @@ html {
   line-height: 1.375; /* ~22px */
 }
 
+body {
+  color: $text-color;
+  background-color: #fff;
+}
+
+body, .appContainer {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+a, a:link, a:visited {
+  color: color($secondary-color lightness(+15%));
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+a:hover, a:focus, a:active {
+  color: color($primary-color lightness(-15%));
+}
+
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301

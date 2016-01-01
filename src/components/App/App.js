@@ -14,7 +14,6 @@ import Header from '../Header';
 import Footer from '../Footer';
 
 class App extends Component {
-
   static propTypes = {
     context: PropTypes.shape({
       insertCss: PropTypes.func,
@@ -53,14 +52,15 @@ class App extends Component {
 
   render() {
     return !this.props.error ? (
-      <div>
+      <div className={s.appContainer}>
         <Header />
-        {this.props.children}
+        <main>
+          {this.props.children}
+        </main>
         <Footer />
       </div>
     ) : this.props.children;
   }
-
 }
 
 export default App;

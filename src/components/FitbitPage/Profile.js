@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import s from './FitbitPage.scss';
 import cx from 'classnames';
+import Link from '../Link';
 
 class Profile extends Component {
   render() {
@@ -26,6 +27,8 @@ class Profile extends Component {
                   <a href={profileUri} target="_blank" className={s.fitbitLink}>
                     {this.props.displayName}
                   </a>
+                  <Link className={s.logoutLink} title="Sign out of Fitbit"
+                        to="/logout">&times;</Link>
                 </th>
               </tr>
             </thead>
