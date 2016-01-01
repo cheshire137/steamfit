@@ -30,7 +30,7 @@ class Profile extends Component {
                   <a href={profileUri} target="_blank" className={s.fitbitLink}>
                     {this.props.displayName}
                   </a>
-                  <Link className={s.logoutLink} title="Sign out of Fitbit"
+                  <Link className={s.logoutLink} data-tt="Sign out of Fitbit"
                         to="/logout">&times;</Link>
                 </th>
               </tr>
@@ -49,7 +49,7 @@ class Profile extends Component {
               {hasGoalSteps ? (
                 <tr className={s.goalSteps}>
                   <th>Step goal:</th>
-                  <td className={s.stepCount} title={stepGoalTitle}>
+                  <td className={s.stepCount} data-tt={stepGoalTitle}>
                     {this.props.goalSteps.toLocaleString()}
                   </td>
                 </tr>

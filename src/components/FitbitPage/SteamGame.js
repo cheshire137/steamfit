@@ -26,7 +26,7 @@ class SteamGame extends Component {
             {this.props.game.name}
           </a>
         </th>
-        <td className={s.gameMinutes} title={gameTimeTitle}>
+        <td className={s.gameMinutes} data-tt={gameTimeTitle}>
           {gameTimeStr}
         </td>
       </tr>

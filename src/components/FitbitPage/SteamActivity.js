@@ -70,12 +70,12 @@ class SteamActivity extends Component {
             <tr>
               <th colSpan="2">
                 <a href={profileUrl} target="_blank"
-                   className={s.steamUsername} title={steamIdTitle}>
+                   className={s.steamUsername} data-tt={steamIdTitle}>
                   {this.props.username}
                 </a>
                 <a href="#" className={s.clearSteamUsername}
                             onClick={this.clearSteamUsername.bind(this)}
-                            title="Choose another Steam user">
+                            data-tt="Choose another Steam user">
                   &times;
                 </a>
               </th>
@@ -86,7 +86,7 @@ class SteamActivity extends Component {
               <tr className={s.steamGameActivity}>
                 <th>Total time:</th>
                 <td className={s.totalGameTime}>
-                  <span title={totalTimeTitle}>
+                  <span data-tt={totalTimeTitle}>
                     {totalTimeStr}
                   </span>
                 </td>
