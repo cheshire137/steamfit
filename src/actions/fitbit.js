@@ -3,7 +3,16 @@ import Config from '../config.json';
 
 class Fitbit {
   static async getProfile(token) {
-    const url = Config.fitbit.apiUrl + '/1/user/-/profile.json';
+    return this.makeRequest(token, '/1/user/-/profile.json');
+  }
+
+  static async getActivitySinceDate(token, dateStr) {
+    return this.makeRequest(token, '/1/user/-/activities/steps/date/' +
+                                   'today/' + dateStr + '.json');
+  }
+
+  static async makeRequest(token, path) {
+    const url = Config.fitbit.apiUrl + path;
     const response = await fetch(url, {
       headers: {
         'Authorization': 'Bearer ' + token

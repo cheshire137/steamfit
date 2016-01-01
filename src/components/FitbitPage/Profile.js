@@ -11,6 +11,7 @@ class Profile extends Component {
         {hasAvatar ? (
           <img src={this.props.avatar} className={s.avatar} />
         ) : ''}
+        <p>Steps since {this.props.stepCutoffDate}: {this.props.steps}</p>
       </div>
     )
   }

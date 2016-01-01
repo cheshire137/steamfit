@@ -16,7 +16,24 @@ class FitbitPage extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {};
+    this.state = {
+      stepCutoffDate: this.getTwoWeeksAgo()
+    };
+  }
+
+  getTwoWeeksAgo() {
+    var today = new Date();
+    var twoWeeksInMs = 60 * 60 * 24 * 7 * 2 * 1000;
+    var date = new Date(today.getTime() - twoWeeksInMs);
+    var month = date.getMonth() + 1;
+    if (month < 10) {
+      month = '0' + month;
+    }
+    var day = date.getDate();
+    if (day < 10) {
+      day = '0' + day;
+    }
+    return date.getFullYear() + '-' + month + '-' + day;
   }
 
   componentWillMount() {
@@ -27,11 +44,24 @@ class FitbitPage extends Component {
     var token = LocalStorage.get('token');
     Fitbit.getProfile(token).then((data) => {
       this.setState({profile: data.user});
-    }.bind(this))
+    }.bind(this));
+    Fitbit.getActivitySinceDate(token, this.state.stepCutoffDate).
+           then((data) => {
+             var steps = data['activities-steps'];
+             this.setState({steps: this.sumSteps(steps)});
+           }.bind(this));
   }
 
   componentDidUpdate() {
     console.log('state', this.state);
+  }
+
+  sumSteps(steps) {
+    var total = 0;
+    for (var i = 0; i < steps.length; i++) {
+      total = total + parseInt(steps[i].value, 10);
+    }
+    return total;
   }
 
   render() {
@@ -40,7 +70,7 @@ class FitbitPage extends Component {
         <div className={s.container}>
           <h1>{title}</h1>
           {typeof this.state.profile === 'object' ? (
-            <Profile {...this.state.profile} />
+            <Profile {...this.state.profile} stepCutoffDate={this.state.stepCutoffDate} steps={this.state.steps} />
           ) : ''}
         </div>
       </div>
