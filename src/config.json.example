@@ -8,5 +8,6 @@
     "webApiKey": "your Steam Web API Key",
     "apiUri": "http://api.steampowered.com"
   },
-  "localStorageKey": "steamfit"
+  "localStorageKey": "steamfit",
+  "serverUri": "http://localhost:5000"
 }

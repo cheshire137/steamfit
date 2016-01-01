@@ -16,6 +16,8 @@ import Router from './routes';
 import Html from './components/Html';
 import assets from './assets';
 import { port } from './config';
+import Config from './config.json';
+import fetch from './core/fetch';
 
 const server = global.server = express();
 
@@ -29,13 +31,28 @@ server.use(express.static(path.join(__dirname, 'public')));
 // -----------------------------------------------------------------------------
 server.use('/api/content', require('./api/content'));
 
+server.get('/api/steam', async (req, res, next) => {
+  var url = Config.steam.apiUri + req.query.path;
+  for (var key in req.query) {
+    if (key !== 'path') {
+      var joiner = url.indexOf('?') > -1 ? '&' : '?';
+      url = url + joiner + key + '=' + encodeURIComponent(req.query[key]);
+    }
+  }
+  const response = await fetch(url);
+  const data = await response.json();
+  res.send(data);
+});
+
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
 server.get('*', async (req, res, next) => {
   try {
     let statusCode = 200;
-    const data = { title: '', description: '', css: '', body: '', entry: assets.main.js };
+    const data = {
+      title: '', description: '', css: '', body: '', entry: assets.main.js
+    };
     const css = [];
     const context = {
       insertCss: styles => css.push(styles._getCss()),
@@ -44,7 +61,9 @@ server.get('*', async (req, res, next) => {
       onPageNotFound: () => statusCode = 404,
     };
 
-    await Router.dispatch({ path: req.path, query: req.query, context }, (state, component) => {
+    await Router.dispatch({
+      path: req.path, query: req.query, context
+    }, (state, component) => {
       data.body = ReactDOM.renderToString(component);
       data.css = css.join('');
     });

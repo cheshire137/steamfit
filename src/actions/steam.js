@@ -3,17 +3,19 @@ import Config from '../config.json';
 
 class Steam {
   static async getSteamId(username) {
-    return this.makeRequest('/ISteamUser/ResolveVanityURL/v0001/' +
-                            '?vanityurl=' + username);
+    return this.makeRequest('/api/steam' +
+                            '?path=/ISteamUser/ResolveVanityURL/v0001/' +
+                            '&vanityurl=' + username);
   }
 
   static async getRecentlyPlayedGames(steamId) {
-    return this.makeRequest('/IPlayerService/GetRecentlyPlayedGames/' +
-                            'v0001/?steamid=' + steamId);
+    return this.makeRequest('/api/steam' +
+                            '?/path=IPlayerService/GetRecentlyPlayedGames/' +
+                            'v0001/&steamid=' + steamId);
   }
 
   static async makeRequest(path) {
-    const url = Config.steam.apiUri + path +
+    const url = Config.serverUri + path +
                 (path.indexOf('?') > -1 ? '&' : '?') +
                 'key=' + Config.steam.webApiKey +
                 '&format=json';
