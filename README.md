@@ -2,6 +2,8 @@
 
 Correlate your Steam activity with your Fitbit activity.
 
+![Screenshot](https://raw.githubusercontent.com/cheshire137/steamfit/master/screenshot.png)
+
 ## How to Develop
 
 Register a [Fitbit application](https://dev.fitbit.com/apps/new). Set your
