@@ -16,10 +16,15 @@ class SteamInfo extends Component {
 
   saveSteamUsername(username) {
     this.setState({username: username});
-    if (typeof username === 'string') {
-      LocalStorage.set('steam', username);
-    } else {
-      LocalStorage.delete('steam');
+    var currentUsername = LocalStorage.get('steam');
+    if (currentUsername !== username) {
+      if (typeof username === 'string') {
+        LocalStorage.set('steam', username);
+      } else {
+        LocalStorage.delete('steam');
+      }
+      LocalStorage.delete('steamId');
+      this.setState({steamId: undefined});
     }
   }
 
