@@ -46,15 +46,15 @@ class FitbitPage extends Component {
     Fitbit.getProfile(token).then((data) => {
       this.setState({profile: data.user});
     }.bind(this));
-    Fitbit.getActivitySinceDate(token, this.state.stepCutoffDate).
-           then((data) => {
-             var steps = data['activities-steps'];
-             this.setState({steps: this.sumSteps(steps)});
-           }.bind(this));
-  }
-
-  componentDidUpdate() {
-    console.log('state', this.state);
+    var goalsXhr = Fitbit.getDailyGoals(token);
+    Fitbit.getActivitySinceDate(token,
+                                this.state.stepCutoffDate).then((data) => {
+      var steps = data['activities-steps'];
+      goalsXhr.then((data) => {
+        this.setState({goalSteps: data.goals.steps * 14,
+                       steps: this.sumSteps(steps)});
+      }.bind(this));
+    }.bind(this));
   }
 
   sumSteps(steps) {
@@ -74,7 +74,7 @@ class FitbitPage extends Component {
             <div className={s.leftColumn}>
               <h2>Fitbit</h2>
               {typeof this.state.profile === 'object' ? (
-                <Profile {...this.state.profile} stepCutoffDate={this.state.stepCutoffDate} steps={this.state.steps} />
+                <Profile {...this.state.profile} stepCutoffDate={this.state.stepCutoffDate} steps={this.state.steps} goalSteps={this.state.goalSteps} />
               ) : ''}
             </div>
             <div className={s.rightColumn}>

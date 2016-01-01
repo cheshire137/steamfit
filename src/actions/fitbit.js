@@ -11,6 +11,10 @@ class Fitbit {
                                    'today/' + dateStr + '.json');
   }
 
+  static async getDailyGoals(token) {
+    return this.makeRequest(token, '/1/user/-/activities/goals/daily.json');
+  }
+
   static async makeRequest(token, path) {
     const url = Config.fitbit.apiUrl + path;
     const response = await fetch(url, {

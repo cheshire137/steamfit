@@ -8,22 +8,30 @@ class Profile extends Component {
         this.props.avatar.length > 0;
     return (
       <div className={s.profile}>
-        <h3>
-          <a href={profileUri} target="_blank" className={s.fitbitLink}>
-            {this.props.displayName}
-          </a>
-        </h3>
         {hasAvatar ? (
-          <a href={profileUri} target="_blank" className={s.fitbitLink}>
+          <a href={profileUri} target="_blank" className={s.fitbitAvatarLink}>
             <img src={this.props.avatar} className={s.avatar} />
           </a>
         ) : ''}
-        <p className={s.steps}>
-          Steps since {this.props.stepCutoffDate}:
-          <span className={s.stepCount}>
-            {this.props.steps.toLocaleString()}
-          </span>
-        </p>
+        <div className={s.fitbitData}>
+          <h3>
+            <a href={profileUri} target="_blank" className={s.fitbitLink}>
+              {this.props.displayName}
+            </a>
+          </h3>
+          <p className={s.steps}>
+            Steps since {this.props.stepCutoffDate}:
+            <span className={s.stepCount}>
+              {this.props.steps.toLocaleString()}
+            </span>
+          </p>
+          <p className={s.goalSteps}>
+            Step goal:
+            <span className={s.stepCount}>
+              {this.props.goalSteps.toLocaleString()}
+            </span>
+          </p>
+        </div>
       </div>
     )
   }
