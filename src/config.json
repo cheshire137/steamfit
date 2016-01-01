@@ -1,0 +1,26 @@
+{
+  "development": {
+    "fitbit": {
+      "redirectUri": "http://localhost:3000/auth",
+      "apiUri": "https://api.fitbit.com"
+    },
+    "steam": {
+      "apiUri": "http://api.steampowered.com"
+    },
+    "localStorageKey": "steamfit",
+    "serverUri": "http://localhost:5000",
+    "clientUri": "http://localhost:3000"
+  },
+  "production": {
+    "fitbit": {
+      "redirectUri": "http://steamfit.herokuapp.com/auth",
+      "apiUri": "https://api.fitbit.com"
+    },
+    "steam": {
+      "apiUri": "http://api.steampowered.com"
+    },
+    "localStorageKey": "steamfit",
+    "serverUri": "http://steamfit.herokuapp.com",
+    "clientUri": "http://steamfit.herokuapp.com"
+  }
+}

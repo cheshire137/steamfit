@@ -27,11 +27,11 @@ class HomePage extends Component {
   render() {
     var scopes = 'activity profile';
     var authUrl = 'https://www.fitbit.com/oauth2/authorize' +
-                  '?client_id=' + Config.fitbit.clientId +
+                  '?client_id=' + process.env.FITBIT_CLIENT_ID +
                   '&response_type=token' +
                   '&scope=' + encodeURIComponent(scopes) +
                   '&redirect_uri=' +
-                  encodeURIComponent(Config.fitbit.redirectUri);
+                  encodeURIComponent(Config[process.env.NODE_ENV].fitbit.redirectUri);
     return (
       <div className={s.root}>
         <div className={s.container}>

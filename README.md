@@ -7,9 +7,9 @@ Correlate your Steam activity with your Fitbit activity.
 Register a [Fitbit application](https://dev.fitbit.com/apps/new). Get a
 [Steam Web API Key](http://steamcommunity.com/dev/apikey).
 
-    cp src/config.json.example src/config.json
+    cp src/env.sh.example src/env.sh
 
-Customize src/config.json.
+Customize src/env.sh.
 
     npm install
     npm start

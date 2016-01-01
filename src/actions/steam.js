@@ -15,10 +15,9 @@ class Steam {
   }
 
   static async makeRequest(path) {
-    const url = Config.serverUri + path +
+    const url = Config[process.env.NODE_ENV].serverUri + path +
                 (path.indexOf('?') > -1 ? '&' : '?') +
-                'key=' + Config.steam.webApiKey +
-                '&format=json';
+                'format=json';
     const response = await fetch(url);
     const data = await response.json();
     return data;
