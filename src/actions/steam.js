@@ -10,7 +10,7 @@ class Steam {
 
   static async getRecentlyPlayedGames(steamId) {
     return this.makeRequest('/api/steam' +
-                            '?/path=IPlayerService/GetRecentlyPlayedGames/' +
+                            '?path=/IPlayerService/GetRecentlyPlayedGames/' +
                             'v0001/&steamid=' + steamId);
   }
 

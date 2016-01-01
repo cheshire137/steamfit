@@ -1,0 +1,17 @@
+@import '../variables.scss';
+
+.steamGame {
+  list-style: none;
+
+  .gameName {
+
+  }
+
+  .gameMinutes {
+
+  }
+
+  & + .steamGame {
+    margin-top: 6px;
+  }
+}

@@ -6,7 +6,7 @@ import Fitbit from '../../actions/fitbit';
 import Profile from './Profile';
 import SteamInfo from './SteamInfo';
 
-const title = 'Your Activity';
+const title = 'Your Activity over the Last 2 Weeks';
 
 @withStyles(s)
 class FitbitPage extends Component {
