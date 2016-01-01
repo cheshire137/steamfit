@@ -21,9 +21,17 @@ table tbody td.tableContainer {
   font-weight: 400;
   padding: 0;
 
-  table tbody tr:first-child {
-    td, th {
-      border-top: none;
+  table.steamGames {
+    tbody {
+      tr:first-child {
+        td, th {
+          border-top: none;
+        }
+      }
+
+      th, td {
+        vertical-align: middle;
+      }
     }
   }
 }
