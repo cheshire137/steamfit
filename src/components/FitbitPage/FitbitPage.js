@@ -5,7 +5,7 @@ import LocalStorage from '../../stores/localStorage';
 import Fitbit from '../../actions/fitbit';
 import Profile from './Profile';
 
-const title = 'Fitbit';
+const title = 'Your Activity';
 
 @withStyles(s)
 class FitbitPage extends Component {
@@ -70,9 +70,17 @@ class FitbitPage extends Component {
       <div className={s.root}>
         <div className={s.container}>
           <h1>{title}</h1>
-          {typeof this.state.profile === 'object' ? (
-            <Profile {...this.state.profile} stepCutoffDate={this.state.stepCutoffDate} steps={this.state.steps} />
-          ) : ''}
+          <div className={s.row}>
+            <div className={s.leftColumn}>
+              <h2>Fitbit</h2>
+              {typeof this.state.profile === 'object' ? (
+                <Profile {...this.state.profile} stepCutoffDate={this.state.stepCutoffDate} steps={this.state.steps} />
+              ) : ''}
+            </div>
+            <div className={s.rightColumn}>
+              <h2>Steam</h2>
+            </div>
+          </div>
         </div>
       </div>
     );
