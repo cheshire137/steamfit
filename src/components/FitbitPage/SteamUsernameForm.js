@@ -11,12 +11,21 @@ class SteamUsernameForm extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    var username = ReactDOM.findDOMNode(this.refs.username).value.trim();
+    var username = ReactDOM.findDOMNode(this.refs.username).value;
+    if (typeof username === 'string') {
+      username = username.trim();
+    }
     this.props.onChange(username);
   }
 
   onInputChange(event) {
-    var username = event.target.value.trim();
+    if (event.target.nodeName !== 'INPUT') {
+      return;
+    }
+    var username = event.target.value;
+    if (typeof username === 'string') {
+      username = username.trim();
+    }
     this.props.onChange(username);
   }
 
