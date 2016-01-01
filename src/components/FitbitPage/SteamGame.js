@@ -12,13 +12,19 @@ class SteamGame extends Component {
     var imgUrl = 'http://media.steampowered.com/steamcommunity/public/' +
                  'images/apps/' + this.props.game.appid + '/' +
                  this.props.game.img_icon_url + '.jpg';
+    var gameUrl = 'https://steamcommunity.com/app/' + this.props.game.appid;
     return (
       <tr className={s.steamGame}>
         <th className={s.gameIconContainer}>
-          <img src={imgUrl} alt={this.props.game.name} className={s.gameIcon} />
+          <a href={gameUrl} target="_blank">
+            <img src={imgUrl} alt={this.props.game.name}
+                 className={s.gameIcon} />
+          </a>
         </th>
         <th className={s.gameName}>
-          {this.props.game.name}
+          <a href={gameUrl} target="_blank">
+            {this.props.game.name}
+          </a>
         </th>
         <td className={s.gameMinutes} title={gameTimeTitle}>
           {gameTimeStr}
