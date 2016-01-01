@@ -55,13 +55,46 @@ p.helpBlock {
   & + .fitbitData {
     display: inline-block;
     vertical-align: top;
+  }
+}
 
-    h3 {
-      margin-top: 0;
+.fitbitData table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: transparent;
+  width: 100%;
+  max-width: 100%;
+
+  thead {
+    th {
+      font-weight: 700;
+      vertical-align: bottom;
+      text-align: left;
+      padding: 6px;
+      line-height: 1.42857143;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  tbody {
+    th, td {
+      vertical-align: top;
+      padding: 6px;
+      line-height: 1.42857143;
+      border-top: 1px solid #ddd;
     }
 
-    h3, p {
-      margin-bottom: 1rem;
+    th {
+      font-weight: 400;
+      text-align: left;
+    }
+
+    td {
+      font-weight: 700;
+      text-align: right;
     }
   }
 }
@@ -84,8 +117,13 @@ p.helpBlock {
 }
 
 .stepCount {
-  padding-left: 0.3em;
-  font-weight: 700;
+  &.metGoal {
+
+  }
+
+  &.notMetGoal {
+    color: #a94442;
+  }
 }
 
 .row {
