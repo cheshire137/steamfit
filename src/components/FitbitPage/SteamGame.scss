@@ -5,7 +5,12 @@
 
   }
 
-  .gameMinutes {
+  .gameIcon {
+    border-radius: 4px;
+    width: 32px;
+  }
 
+  .gameMinutes {
+    white-space: nowrap;
   }
 }

@@ -84,8 +84,8 @@ class SteamActivity extends Component {
           <tbody>
             {hasGames ? (
               <tr className={s.steamGameActivity}>
-                <th>Play time:</th>
-                <td>
+                <th>Total time:</th>
+                <td className={s.totalGameTime}>
                   <span title={totalTimeTitle}>
                     {totalTimeStr}
                   </span>
@@ -96,7 +96,7 @@ class SteamActivity extends Component {
             )}
             {hasGames ? (
               <tr>
-                <th>Games:</th>
+                <th>Breakdown:</th>
                 <td className={s.tableContainer}>
                   <table className={s.steamGames}>
                     <tbody>
