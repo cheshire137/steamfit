@@ -55,12 +55,12 @@ class SteamActivity extends Component {
   render() {
     var steamIdTitle = 'Steam ID: ' + this.state.steamId;
     var hasGames = typeof this.state.games === 'object';
-    var totalGameMinutes = this.state.totalGameMinutes;
+    var totalGameMinutes = this.state.totalGameMinutes || 0;
     var totalGameHours = Math.floor(totalGameMinutes / 60);
-    var totalTimeStr = totalGameHours + 'h ' +
-        (totalGameMinutes % 60) + 'm';
     var totalTimeTitle = totalGameMinutes.toLocaleString() + ' ' +
         (totalGameMinutes === 1 ? 'minute' : 'minutes');
+    var totalTimeStr = totalGameMinutes > 60 ? totalGameHours + 'h ' +
+        (totalGameMinutes % 60) + 'm' : totalTimeTitle;
     var profileUrl = 'https://steamcommunity.com/id/' +
                      this.props.username + '/';
     return (
@@ -97,13 +97,15 @@ class SteamActivity extends Component {
             {hasGames ? (
               <tr>
                 <th>Games:</th>
-                <td className={s.listContainer}>
-                  <ul className={s.steamGames}>
-                    {this.state.games.map((game) => {
-                      return <SteamGame key={game.appid} game={game}
-                                        totalGameMinutes={totalGameMinutes} />;
-                    })}
-                  </ul>
+                <td className={s.tableContainer}>
+                  <table className={s.steamGames}>
+                    <tbody>
+                      {this.state.games.map((game) => {
+                        return <SteamGame key={game.appid} game={game}
+                                          totalGameMinutes={totalGameMinutes} />;
+                      })}
+                    </tbody>
+                  </table>
                 </td>
               </tr>
             ) : (

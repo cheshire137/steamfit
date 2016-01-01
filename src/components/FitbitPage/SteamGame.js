@@ -3,16 +3,21 @@ import s from './FitbitPage.scss';
 
 class SteamGame extends Component {
   render() {
+    var gameMinutes = this.props.game.playtime_2weeks;
+    var gameHours = Math.floor(gameMinutes / 60);
+    var gameTimeTitle = gameMinutes.toLocaleString() + ' ' +
+        (gameMinutes === 1 ? 'minute' : 'minutes');
+    var gameTimeStr = gameMinutes > 60 ?
+        gameHours + 'h ' + (gameMinutes % 60) + 'm' : gameMinutes + 'm';
     return (
-      <li className={s.steamGame}>
-        <span className={s.gameName}>
+      <tr className={s.steamGame}>
+        <th className={s.gameName}>
           {this.props.game.name}
-        </span> -
-        <span className={s.gameMinutes}>
-          {this.props.game.playtime_2weeks.toLocaleString()}
-        </span>
-        minutes over last 2 weeks
-      </li>
+        </th>
+        <td className={s.gameMinutes} title={gameTimeTitle}>
+          {gameTimeStr}
+        </td>
+      </tr>
     );
   }
 }
