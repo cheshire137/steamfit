@@ -51,8 +51,10 @@ class FitbitPage extends Component {
                                 this.state.stepCutoffDate).then((data) => {
       var steps = data['activities-steps'];
       goalsXhr.then((data) => {
-        this.setState({goalSteps: data.goals.steps * 14,
-                       steps: this.sumSteps(steps)});
+        var dailyStepGoal = data.goals.steps;
+        this.setState({goalSteps: dailyStepGoal * 14,
+                       steps: this.sumSteps(steps),
+                       dailyStepGoal: dailyStepGoal});
       }.bind(this));
     }.bind(this));
   }
@@ -66,19 +68,26 @@ class FitbitPage extends Component {
   }
 
   render() {
+    var haveProfile = typeof this.state.profile === 'object';
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>{title}</h1>
           <div className={s.row}>
             <div className={s.leftColumn}>
-              <h2>Fitbit</h2>
-              {typeof this.state.profile === 'object' ? (
-                <Profile {...this.state.profile} stepCutoffDate={this.state.stepCutoffDate} steps={this.state.steps} goalSteps={this.state.goalSteps} />
+              <h2>
+                <img className={s.fitbitLogo} src={require('../HomePage/fitbit.png')} width="16" height="16" alt="Fitbit" />
+                Fitbit
+              </h2>
+              {haveProfile ? (
+                <Profile {...this.state.profile} stepCutoffDate={this.state.stepCutoffDate} steps={this.state.steps} goalSteps={this.state.goalSteps} dailyStepGoal={this.state.dailyStepGoal} />
               ) : ''}
             </div>
             <div className={s.rightColumn}>
-              <h2>Steam</h2>
+              <h2>
+                <img className={s.steamLogo} src={require('./steam.png')} width="16" height="16" alt="Steam" />
+                Steam
+              </h2>
               <SteamInfo />
             </div>
           </div>

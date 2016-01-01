@@ -12,6 +12,9 @@ class Profile extends Component {
     var hasGoalSteps = typeof this.props.goalSteps === 'number';
     var goalClass = hasSteps && hasGoalSteps &&
         this.props.steps >= this.props.goalSteps ? s.metGoal : s.notMetGoal;
+    var stepGoalTitle = typeof this.props.dailyStepGoal === 'number' ?
+        'Based on ' + this.props.dailyStepGoal.toLocaleString() + ' ' +
+        (this.props.dailyStepGoal === 1 ? 'step' : 'steps') + ' per day' : '';
     return (
       <div className={s.profile}>
         {hasAvatar ? (
@@ -46,7 +49,7 @@ class Profile extends Component {
               {hasGoalSteps ? (
                 <tr className={s.goalSteps}>
                   <th>Step goal:</th>
-                  <td className={s.stepCount}>
+                  <td className={s.stepCount} title={stepGoalTitle}>
                     {this.props.goalSteps.toLocaleString()}
                   </td>
                 </tr>

@@ -92,7 +92,9 @@ class SteamActivity extends Component {
                 </td>
               </tr>
             ) : (
-              <tr></tr>
+              <tr>
+                <th colSpan="2">Loading...</th>
+              </tr>
             )}
             {hasGames ? (
               <tr>
