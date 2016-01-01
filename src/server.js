@@ -31,6 +31,13 @@ server.use(express.static(path.join(__dirname, 'public')));
 // -----------------------------------------------------------------------------
 server.use('/api/content', require('./api/content'));
 
+server.all('*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', Config.clientUri);
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 server.get('/api/steam', async (req, res, next) => {
   var url = Config.steam.apiUri + req.query.path;
   for (var key in req.query) {

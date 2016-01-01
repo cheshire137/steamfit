@@ -9,5 +9,6 @@
     "apiUri": "http://api.steampowered.com"
   },
   "localStorageKey": "steamfit",
-  "serverUri": "http://localhost:5000"
+  "serverUri": "http://localhost:5000",
+  "clientUri": "http://localhost:3000"
 }
