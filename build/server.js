@@ -120,6 +120,13 @@ module.exports =
     next();
   });
   
+  server.get('/fitbit-auth', function (req, res) {
+    var scopes = 'activity profile';
+    var redirectUri = _configJson2['default'][("development")].clientUri + '/auth';
+    var authUri = 'https://www.fitbit.com/oauth2/authorize' + '?client_id=' + process.env.FITBIT_CLIENT_ID + '&response_type=token' + '&scope=' + encodeURIComponent(scopes) + '&redirect_uri=' + encodeURIComponent(redirectUri);
+    res.redirect(authUri);
+  });
+  
   server.get('/api/steam', function callee$0$0(req, res, next) {
     var url, key, joiner, response, data;
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
@@ -2685,8 +2692,7 @@ module.exports =
     }, {
       key: 'render',
       value: function render() {
-        var scopes = 'activity profile';
-        var authUrl = 'https://www.fitbit.com/oauth2/authorize' + '?client_id=' + process.env.FITBIT_CLIENT_ID + '&response_type=token' + '&scope=' + encodeURIComponent(scopes) + '&redirect_uri=' + encodeURIComponent(_configJson2['default'][("development")].fitbit.redirectUri);
+        var authUri = _configJson2['default'][("development")].serverUri + '/fitbit-auth';
         return _react2['default'].createElement(
           'div',
           { className: _HomePageScss2['default'].root },
@@ -2717,7 +2723,7 @@ module.exports =
               null,
               _react2['default'].createElement(
                 'a',
-                { className: _HomePageScss2['default'].fitbitLink, href: authUrl },
+                { className: _HomePageScss2['default'].fitbitLink, href: authUri },
                 _react2['default'].createElement('img', { src: __webpack_require__(47), width: '16', height: '16', alt: 'Fitbit' }),
                 _react2['default'].createElement(
                   'span',
@@ -2802,7 +2808,6 @@ module.exports =
   module.exports = {
   	"development": {
   		"fitbit": {
-  			"redirectUri": "http://localhost:3000/auth",
   			"apiUri": "https://api.fitbit.com"
   		},
   		"steam": {
@@ -2814,7 +2819,6 @@ module.exports =
   	},
   	"production": {
   		"fitbit": {
-  			"redirectUri": "http://steamfit.herokuapp.com/auth",
   			"apiUri": "https://api.fitbit.com"
   		},
   		"steam": {

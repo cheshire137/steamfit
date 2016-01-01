@@ -81,7 +81,7 @@
     "clean": "babel-node tools/run clean",
     "copy": "babel-node tools/run copy",
     "bundle": "babel-node tools/run bundle",
-    "build": "if [ -f src/env-production.sh ]; then echo 'using src/env-production.sh' && source src/env.sh; fi && NODE_ENV=production babel-node tools/run build",
+    "build": "NODE_ENV=production babel-node tools/run build",
     "deploy": "babel-node tools/run deploy",
     "start": "node server.js"
   }
