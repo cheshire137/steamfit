@@ -19,18 +19,22 @@ class Profile extends Component {
               {this.props.displayName}
             </a>
           </h3>
-          <p className={s.steps}>
-            Steps since {this.props.stepCutoffDate}:
-            <span className={s.stepCount}>
-              {this.props.steps.toLocaleString()}
-            </span>
-          </p>
-          <p className={s.goalSteps}>
-            Step goal:
-            <span className={s.stepCount}>
-              {this.props.goalSteps.toLocaleString()}
-            </span>
-          </p>
+          {typeof this.props.steps === 'number' ? (
+            <p className={s.steps}>
+              Steps since {this.props.stepCutoffDate}:
+              <span className={s.stepCount}>
+                {this.props.steps.toLocaleString()}
+              </span>
+            </p>
+          ) : ''}
+          {typeof this.props.goalSteps === 'number' ? (
+            <p className={s.goalSteps}>
+              Step goal:
+              <span className={s.stepCount}>
+                {this.props.goalSteps.toLocaleString()}
+              </span>
+            </p>
+          ) : ''}
         </div>
       </div>
     )

@@ -16,7 +16,7 @@ class Fitbit {
   }
 
   static async makeRequest(token, path) {
-    const url = Config.fitbit.apiUrl + path;
+    const url = Config.fitbit.apiUri + path;
     const response = await fetch(url, {
       headers: {
         'Authorization': 'Bearer ' + token
