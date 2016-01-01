@@ -1,1 +1,18 @@
 @import '../variables.scss';
+
+.root {
+
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 0 40px;
+  max-width: $max-content-width;
+}
+
+.profile {
+  .avatar {
+    display: block;
+    width: 100px;
+  }
+}

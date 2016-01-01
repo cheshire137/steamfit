@@ -6,9 +6,9 @@ Correlate your Steam activity with your Fitbit activity.
 
 Register a [Fitbit application](https://dev.fitbit.com/apps/new).
 
-    cp src/components/config.json.example src/components/config.json
+    cp src/config.json.example src/config.json
 
-Customize src/components/config.json.
+Customize src/config.json.
 
     npm install
     npm start

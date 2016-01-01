@@ -3,7 +3,7 @@ import s from './AuthPage.scss';
 import parsePath from 'history/lib/parsePath';
 import withStyles from '../../decorators/withStyles';
 import QueryString from '../QueryString';
-import LocalStorage from '../LocalStorage';
+import LocalStorage from '../../stores/localStorage';
 import Location from '../../core/Location';
 
 const title = 'Authenticating...';

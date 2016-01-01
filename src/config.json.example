@@ -1,7 +1,8 @@
 {
   "fitbit": {
     "clientId": "your Fitbit OAuth 2.0 Client ID",
-    "redirectUri": "http://localhost:3000/auth"
+    "redirectUri": "http://localhost:3000/auth",
+    "apiUrl": "https://api.fitbit.com"
   },
   "localStorageKey": "steamfit"
 }

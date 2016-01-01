@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import s from './HomePage.scss';
 import parsePath from 'history/lib/parsePath';
 import withStyles from '../../decorators/withStyles';
-import Config from '../config.json';
-import LocalStorage from '../LocalStorage';
+import Config from '../../config.json';
+import LocalStorage from '../../stores/localStorage';
 import Location from '../../core/Location';
 
 const title = 'Connect with Fitbit';
