@@ -9,10 +9,22 @@
 
 @import '../variables.scss';
 
-$brand-color: #61dafb;
+a, a:link, a:visited {
+  color: color($secondary-color lightness(+15%));
+  text-decoration: none;
+  -webkit-transition: color 0.25s ease-in-out;
+  -moz-transition: color 0.25s ease-in-out;
+  -ms-transition: color 0.25s ease-in-out;
+  -o-transition: color 0.25s ease-in-out;
+  transition: color 0.25s ease-in-out;
+}
+
+a:hover, a:focus, a:active {
+  color: color($primary-color lightness(-15%));
+}
 
 .root {
-  background: #373277;
+  background: $secondary-color;
   color: #fff;
 }
 
@@ -23,8 +35,13 @@ $brand-color: #61dafb;
 }
 
 .brand {
-  color: color($brand-color lightness(+10%));
-  text-decoration: none;
+  &, &:link, &:visited {
+    color: color($primary-color lightness(+10%));
+  }
+
+  &:hover, &:focus, &:active {
+    color: $primary-color;
+  }
 }
 
 .brandTxt {
@@ -53,4 +70,8 @@ $brand-color: #61dafb;
   color: rgba(255, 255, 255, .5);
   font-size: 1.25em;
   margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 400;
 }

@@ -118,12 +118,20 @@ p.helpBlock {
 
 .stepCount {
   &.metGoal {
-
+    color: #3c763d;
   }
 
   &.notMetGoal {
     color: #a94442;
   }
+}
+
+.clearSteamUsername {
+  padding-left: 0.3em;
+  font-weight: 700;
+  text-decoration: none;
+  vertical-align: top;
+  display: inline-block;
 }
 
 .row {
@@ -153,7 +161,7 @@ p.helpBlock {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: $screen-md-min) {
   .row {
     .leftColumn, .rightColumn {
       width: 47%;

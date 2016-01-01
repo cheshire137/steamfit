@@ -27,8 +27,8 @@ class Steam extends Component {
         {hasUsername ? (
           <p>
             Steam user name: {this.state.username}
-            <a href="#" onClick={this.clearSteamUsername.bind(this)}>
-              X
+            <a href="#" className={s.clearSteamUsername} onClick={this.clearSteamUsername.bind(this)}>
+              &times;
             </a>
           </p>
         ) : (
