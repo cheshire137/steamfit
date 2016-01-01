@@ -4,7 +4,7 @@ import withStyles from '../../decorators/withStyles';
 import LocalStorage from '../../stores/localStorage';
 import Fitbit from '../../actions/fitbit';
 import Profile from './Profile';
-import Steam from './Steam';
+import SteamInfo from './SteamInfo';
 
 const title = 'Your Activity';
 
@@ -79,7 +79,7 @@ class FitbitPage extends Component {
             </div>
             <div className={s.rightColumn}>
               <h2>Steam</h2>
-              <Steam />
+              <SteamInfo />
             </div>
           </div>
         </div>

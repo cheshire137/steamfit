@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import s from './FitbitPage.scss';
 import SteamUsernameForm from './SteamUsernameForm';
+import SteamActivity from './SteamActivity';
 import LocalStorage from '../../stores/localStorage';
 
-class Steam extends Component {
+class SteamInfo extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {};
@@ -29,25 +30,12 @@ class Steam extends Component {
     this.saveSteamUsername(username);
   }
 
-  clearSteamUsername(event) {
-    event.preventDefault();
-    this.saveSteamUsername(undefined);
-  }
-
   render() {
     var hasUsername = typeof this.state.username === 'string';
     return (
       <div className={s.steam}>
         {hasUsername ? (
-          <p>
-            Steam user name:
-            <span className={s.steamUsername}>
-              {this.state.username}
-            </span>
-            <a href="#" className={s.clearSteamUsername} onClick={this.clearSteamUsername.bind(this)}>
-              &times;
-            </a>
-          </p>
+          <SteamActivity username={this.state.username} saveSteamUsername={this.saveSteamUsername.bind(this)} />
         ) : (
           <SteamUsernameForm onChange={this.onSteamUsernameChange.bind(this)} />
         )}
@@ -56,4 +44,4 @@ class Steam extends Component {
   }
 }
 
-export default Steam;
+export default SteamInfo;

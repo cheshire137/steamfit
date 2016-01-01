@@ -1,0 +1,14 @@
+@import '../variables.scss';
+
+.steamUsername {
+  padding-left: 0.3em;
+  font-weight: 700;
+}
+
+.clearSteamUsername {
+  padding-left: 0.3em;
+  font-weight: 700;
+  text-decoration: none;
+  vertical-align: top;
+  display: inline-block;
+}
