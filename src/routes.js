@@ -17,6 +17,7 @@ import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
 import AuthPage from './components/AuthPage';
 import FitbitPage from './components/FitbitPage';
+import LogoutPage from './components/LogoutPage';
 
 const router = new Router(on => {
   on('*', async (state, next) => {
@@ -29,6 +30,8 @@ const router = new Router(on => {
   on('/auth', async () => <AuthPage />);
 
   on('/fitbit', async () => <FitbitPage />);
+
+  on('/logout', async () => <LogoutPage />);
 
   on('*', async (state) => {
     const response = await fetch(`/api/content?path=${state.path}`);
