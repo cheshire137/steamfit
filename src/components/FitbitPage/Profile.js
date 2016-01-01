@@ -37,7 +37,9 @@ class Profile extends Component {
                     {this.props.steps.toLocaleString()}
                   </td>
                 </tr>
-              ) : ''}
+              ) : (
+                <tr></tr>
+              )}
               {hasGoalSteps ? (
                 <tr className={s.goalSteps}>
                   <th>Step goal:</th>
@@ -45,7 +47,9 @@ class Profile extends Component {
                     {this.props.goalSteps.toLocaleString()}
                   </td>
                 </tr>
-              ) : ''}
+              ) : (
+                <tr></tr>
+              )}
             </tbody>
           </table>
         </div>
