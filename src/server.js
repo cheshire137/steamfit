@@ -39,6 +39,17 @@ server.all('*', (req, res, next) => {
   next();
 });
 
+server.get('/fitbit-auth', (req, res) => {
+  var scopes = 'activity profile';
+  var redirectUri = Config[process.env.NODE_ENV].clientUri + '/auth';
+  var authUri = 'https://www.fitbit.com/oauth2/authorize' +
+                '?client_id=' + process.env.FITBIT_CLIENT_ID +
+                '&response_type=token' +
+                '&scope=' + encodeURIComponent(scopes) +
+                '&redirect_uri=' + encodeURIComponent(redirectUri);
+  res.redirect(authUri);
+});
+
 server.get('/api/steam', async (req, res, next) => {
   var url = Config[process.env.NODE_ENV].steam.apiUri + req.query.path;
   for (var key in req.query) {

@@ -1,7 +1,6 @@
 {
   "development": {
     "fitbit": {
-      "redirectUri": "http://localhost:3000/auth",
       "apiUri": "https://api.fitbit.com"
     },
     "steam": {
@@ -13,7 +12,6 @@
   },
   "production": {
     "fitbit": {
-      "redirectUri": "http://steamfit.herokuapp.com/auth",
       "apiUri": "https://api.fitbit.com"
     },
     "steam": {

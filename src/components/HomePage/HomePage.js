@@ -25,13 +25,7 @@ class HomePage extends Component {
   }
 
   render() {
-    var scopes = 'activity profile';
-    var authUrl = 'https://www.fitbit.com/oauth2/authorize' +
-                  '?client_id=' + process.env.FITBIT_CLIENT_ID +
-                  '&response_type=token' +
-                  '&scope=' + encodeURIComponent(scopes) +
-                  '&redirect_uri=' +
-                  encodeURIComponent(Config[process.env.NODE_ENV].fitbit.redirectUri);
+    var authUri = Config[process.env.NODE_ENV].serverUri + '/fitbit-auth';
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -41,7 +35,7 @@ class HomePage extends Component {
             how much you've been <em>walking</em>.
           </p>
           <p>
-            <a className={s.fitbitLink} href={authUrl}>
+            <a className={s.fitbitLink} href={authUri}>
               <img src={require('./fitbit.png')} width="16" height="16" alt="Fitbit" />
               <span>Sign in to Fitbit</span>
             </a>
