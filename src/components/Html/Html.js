@@ -38,7 +38,7 @@ class Html extends Component {
 
   render() {
     return (
-      <html className="no-js" lang="">
+      <html className="no-js" lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />

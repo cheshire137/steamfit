@@ -1,0 +1,6 @@
+{
+  "name": "FitbitPage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./FitbitPage.js"
+}

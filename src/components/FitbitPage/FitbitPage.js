@@ -1,15 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import s from './AuthPage.scss';
-import parsePath from 'history/lib/parsePath';
+import s from './FitbitPage.scss';
 import withStyles from '../../decorators/withStyles';
-import QueryString from '../QueryString';
 import LocalStorage from '../LocalStorage';
-import Location from '../../core/Location';
 
-const title = 'Authenticating...';
+const title = 'Fitbit';
 
 @withStyles(s)
-class AuthPage extends Component {
+class FitbitPage extends Component {
 
   static contextTypes = {
     onSetTitle: PropTypes.func.isRequired,
@@ -17,10 +14,6 @@ class AuthPage extends Component {
 
   componentWillMount() {
     this.context.onSetTitle(title);
-    LocalStorage.set('token', QueryString.access_token);
-    Location.push({
-      ...(parsePath('/fitbit'))
-    });
   }
 
   render() {
@@ -35,4 +28,4 @@ class AuthPage extends Component {
 
 }
 
-export default AuthPage;
+export default FitbitPage;

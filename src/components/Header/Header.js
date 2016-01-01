@@ -22,7 +22,11 @@ class Header extends Component {
         <div className={s.container}>
           <Navigation className={s.nav} />
           <div className={s.banner}>
-            <h1 className={s.bannerTitle}>SteamFit</h1>
+            <h1 className={s.bannerTitle}>
+              <Link className={s.brand} to="/">
+                SteamFit
+              </Link>
+            </h1>
             <p className={s.bannerDesc}>Correlate your Steam activity with your Fitbit activity.</p>
           </div>
         </div>

@@ -1,0 +1,6 @@
+{
+  "name": "QueryString",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./QueryString.js"
+}

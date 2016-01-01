@@ -2,6 +2,9 @@ import Config from '../config.json';
 
 class LocalStorage {
   static getJSON() {
+    if (typeof window === 'undefined') {
+      return {};
+    }
     if (!window.localStorage) {
       console.error('browser does not support local storage');
       return {};
@@ -19,15 +22,19 @@ class LocalStorage {
   static set(key, value) {
     var appData = this.getJSON();
     appData[key] = value;
-    window.localStorage.setItem(Config.localStorageKey,
-                                JSON.stringify(appData));
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(Config.localStorageKey,
+                                  JSON.stringify(appData));
+    }
   }
 
   static delete(key) {
     var appData = this.getJSON();
     delete appData[key];
-    window.localStorage.setItem(Config.localStorageKey,
-                                JSON.stringify(appData));
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(Config.localStorageKey,
+                                  JSON.stringify(appData));
+    }
   }
 }
 
