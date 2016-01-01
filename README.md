@@ -25,3 +25,4 @@ Visit [localhost:3000](http://localhost:3000/).
 1. `heroku git:remote -a your_heroku_app_name`
 1. `heroku config:set STEAM_API_KEY="your Steam Web API Key"`
 1. `heroku config:set FITBIT_CLIENT_ID="your Fitbit OAuth 2.0 client ID"`
+1. `git subtree push --prefix build heroku master`
