@@ -4,6 +4,10 @@
 
 }
 
+.fitbitLink {
+
+}
+
 .container {
   margin: 0 auto;
   padding: 0 0 40px;
@@ -12,11 +16,15 @@
 
 .profile {
   .avatar {
+    border-radius: 10px;
     display: block;
     width: 100px;
   }
 }
 
 .steps {
-
+  .stepCount {
+    padding-left: 0.3em;
+    font-weight: 700;
+  }
 }

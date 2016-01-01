@@ -25,6 +25,7 @@ class FitbitPage extends Component {
     var today = new Date();
     var twoWeeksInMs = 60 * 60 * 24 * 7 * 2 * 1000;
     var date = new Date(today.getTime() - twoWeeksInMs);
+    date.setHours(0, 0, 0, 0);
     var month = date.getMonth() + 1;
     if (month < 10) {
       month = '0' + month;
