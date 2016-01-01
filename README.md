@@ -21,9 +21,13 @@ Visit [localhost:3000](http://localhost:3000/).
 
 ## How to Deploy to Heroku
 
+    cp src/env.sh.example src/env-production.sh
+
+Customize src/env-production.sh with API keys for production.
+
 1. [Add an app on heroku.com.](https://dashboard.heroku.com/new)
 1. `heroku git:remote -a your_heroku_app_name`
 1. `heroku config:set STEAM_API_KEY="your Steam Web API Key"`
 1. `heroku config:set FITBIT_CLIENT_ID="your Fitbit OAuth 2.0 client ID"`
-1. `NODE_ENV=production npm run build`
+1. `npm run build`
 1. `git subtree push --prefix build heroku master`
