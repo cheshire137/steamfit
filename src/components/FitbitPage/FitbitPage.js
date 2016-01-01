@@ -4,7 +4,7 @@ import withStyles from '../../decorators/withStyles';
 import LocalStorage from '../../stores/localStorage';
 import Fitbit from '../../actions/fitbit';
 import Profile from './Profile';
-import _ from 'underscore';
+import Steam from './Steam';
 
 const title = 'Your Activity';
 
@@ -19,8 +19,6 @@ class FitbitPage extends Component {
     this.state = {
       stepCutoffDate: this.getTwoWeeksAgo()
     };
-    this.onSteamUsernameChange =
-        _.debounce(this.onSteamUsernameChange, 2000);
   }
 
   getTwoWeeksAgo() {
@@ -67,10 +65,6 @@ class FitbitPage extends Component {
     return total;
   }
 
-  onSteamUsernameChange(event) {
-    console.log(event.target.value);
-  }
-
   render() {
     return (
       <div className={s.root}>
@@ -85,13 +79,7 @@ class FitbitPage extends Component {
             </div>
             <div className={s.rightColumn}>
               <h2>Steam</h2>
-              <label htmlFor="steam-username">
-                Your Steam user name:
-              </label>
-              <input type="text" id="steam-username" autofocus="autofocus" placeholder="e.g., cheshire137" onChange={this.onSteamUsernameChange} />
-              <p className={s.helpBlock}>
-                Your Steam profile must be public.
-              </p>
+              <Steam />
             </div>
           </div>
         </div>
