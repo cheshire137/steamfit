@@ -72,6 +72,10 @@ class FitbitPage extends Component {
     this.setState({totalGameMinutes: totalMinutes});
   }
 
+  onSteamUsernameChange(username) {
+    this.setState({totalGameMinutes: undefined});
+  }
+
   render() {
     var haveProfile = typeof this.state.profile === 'object';
     var haveGoals = typeof this.state.goalSteps === 'number' &&
@@ -84,7 +88,15 @@ class FitbitPage extends Component {
           <h1>{title}</h1>
           {haveGoals && haveGameMinutes ? (
             <p className={cx(s.alert, metGoal ? s.alertSuccess : s.alertDanger)}>
-              {metGoal ? 'Keep on gaming, you met your step goal!' : 'You should walk more and game less. :('}
+              {metGoal ? this.state.totalGameMinutes > 0 ? (
+                <span>Keep on gaming, you met your step goal!</span>
+              ) : (
+                <span>You didn't game at all, go play something!</span>
+              ) : this.state.totalGameMinutes > 0 ? (
+                <span>You should walk more and game less. :(</span>
+              ) : (
+                <span>You should walk more. :(</span>
+              )}
             </p>
           ) : ''}
           <div className={s.row}>
@@ -102,7 +114,7 @@ class FitbitPage extends Component {
                 <img className={s.steamLogo} src={require('./steam.png')} width="16" height="16" alt="Steam" />
                 Steam
               </h2>
-              <SteamInfo onSteamGameTimeUpdate={this.onSteamGameTimeUpdate.bind(this)} />
+              <SteamInfo onSteamUsernameChange={this.onSteamUsernameChange.bind(this)} onSteamGameTimeUpdate={this.onSteamGameTimeUpdate.bind(this)} />
             </div>
           </div>
         </div>

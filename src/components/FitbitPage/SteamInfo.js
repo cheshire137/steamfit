@@ -25,6 +25,7 @@ class SteamInfo extends Component {
       }
       LocalStorage.delete('steamId');
       this.setState({steamId: undefined});
+      this.props.onSteamUsernameChange(username);
     }
   }
 
@@ -33,6 +34,7 @@ class SteamInfo extends Component {
       username = undefined;
     }
     this.saveSteamUsername(username);
+    this.props.onSteamUsernameChange(username);
   }
 
   render() {
