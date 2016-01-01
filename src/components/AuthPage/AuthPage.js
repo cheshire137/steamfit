@@ -10,7 +10,6 @@ const title = 'Authenticating...';
 
 @withStyles(s)
 class AuthPage extends Component {
-
   static contextTypes = {
     onSetTitle: PropTypes.func.isRequired,
   };
@@ -32,7 +31,6 @@ class AuthPage extends Component {
       </div>
     );
   }
-
 }
 
 export default AuthPage;

@@ -1,13 +1,19 @@
 @import '../variables.scss';
 
 .root {
-
+  width: 100%;
 }
 
 .container {
   margin: 0 auto;
-  padding: 0 0 40px;
   max-width: $max-content-width;
+  text-align: center;
+  font-size: 1.4rem;
+
+  em {
+    font-style: normal;
+    color: $fitbit-color;
+  }
 }
 
 a.fitbitLink {

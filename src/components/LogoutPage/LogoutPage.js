@@ -9,7 +9,6 @@ const title = 'Signing out...';
 
 @withStyles(s)
 class LogoutPage extends Component {
-
   static contextTypes = {
     onSetTitle: PropTypes.func.isRequired,
   };
@@ -31,7 +30,6 @@ class LogoutPage extends Component {
       </div>
     );
   }
-
 }
 
 export default LogoutPage;

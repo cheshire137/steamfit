@@ -1,1 +1,11 @@
 @import '../variables.scss';
+
+.root {
+  width: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: $max-content-width;
+  text-align: center;
+}

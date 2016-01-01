@@ -35,10 +35,10 @@ class HomePage extends Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>{title}</h1>
           <p>
-            Sign in to Fitbit to compare how much you've been gaming with
-            how much you've been walking.
+            Sign in to Fitbit to compare<br/>
+            how much you've been <em>gaming</em> with
+            how much you've been <em>walking</em>.
           </p>
           <p>
             <a className={s.fitbitLink} href={authUrl}>

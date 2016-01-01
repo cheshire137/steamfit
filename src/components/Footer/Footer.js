@@ -19,6 +19,10 @@ class Footer extends Component {
       <footer className={s.root}>
         <div className={s.container}>
           <span className={s.text}>&copy; 2016 Sarah Vessels</span>
+          <a className={s.link} href="https://github.com/cheshire137/steamfit"
+             target="_blank">
+            View source
+          </a>
         </div>
       </footer>
     );
