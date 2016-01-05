@@ -6,6 +6,8 @@ import LocalStorage from '../../stores/localStorage';
 import Fitbit from '../../actions/fitbit';
 import Profile from './Profile';
 import SteamInfo from './SteamInfo';
+import parsePath from 'history/lib/parsePath';
+import Location from '../../core/Location';
 
 const title = 'Your Activity over the Last 2 Weeks';
 
@@ -44,20 +46,50 @@ class FitbitPage extends Component {
 
   componentDidMount() {
     var token = LocalStorage.get('token');
-    Fitbit.getProfile(token).then((data) => {
-      this.setState({profile: data.user});
-    }.bind(this));
-    var goalsXhr = Fitbit.getDailyGoals(token);
-    Fitbit.getActivitySinceDate(token,
-                                this.state.stepCutoffDate).then((data) => {
-      var steps = data['activities-steps'];
-      goalsXhr.then((data) => {
-        var dailyStepGoal = data.goals.steps;
-        this.setState({goalSteps: dailyStepGoal * 14,
-                       steps: this.sumSteps(steps),
-                       dailyStepGoal: dailyStepGoal});
-      }.bind(this));
-    }.bind(this));
+    Fitbit.getProfile(token).
+           then(this.onFitbitProfileFetch.bind(this, token)).
+           then(undefined, this.onFitbitProfileError.bind(this));
+  }
+
+  onFitbitActivityFetch(goalsXhr, data) {
+    const steps = data['activities-steps'];
+    goalsXhr.then(this.onFitbitGoalsFetch.bind(this, steps)).
+             then(undefined, this.onFitbitGoalsError.bind(this));
+  }
+
+  onFitbitActivityError(err) {
+    console.error('failed to load Fitbit activity', err);
+  }
+
+  onFitbitGoalsFetch(steps, data) {
+    if (!data.goals) {
+      console.error('could not get Fitbit goals from response', data);
+      return;
+    }
+    var dailyStepGoal = data.goals.steps;
+    this.setState({goalSteps: dailyStepGoal * 14,
+                   steps: this.sumSteps(steps),
+                   dailyStepGoal: dailyStepGoal});
+  }
+
+  onFitbitGoalsError(err) {
+    console.error('failed to load Fitbit goals', err);
+  }
+
+  onFitbitProfileFetch(token, data) {
+    this.setState({profile: data.user});
+    const goalsXhr = Fitbit.getDailyGoals(token);
+    Fitbit.getActivitySinceDate(token, this.state.stepCutoffDate).
+           then(this.onFitbitActivityFetch.bind(this, goalsXhr)).
+           then(undefined, this.onFitbitActivityError.bind(this));
+  }
+
+  onFitbitProfileError(err) {
+    console.error('failed to load Fitbit profile', err);
+    LocalStorage.delete('token');
+    Location.push({
+      ...(parsePath('/'))
+    });
   }
 
   sumSteps(steps) {
@@ -106,7 +138,11 @@ class FitbitPage extends Component {
                 Fitbit
               </h2>
               {haveProfile ? (
-                <Profile {...this.state.profile} stepCutoffDate={this.state.stepCutoffDate} steps={this.state.steps} goalSteps={this.state.goalSteps} dailyStepGoal={this.state.dailyStepGoal} />
+                <Profile {...this.state.profile}
+                         stepCutoffDate={this.state.stepCutoffDate}
+                         steps={this.state.steps}
+                         goalSteps={this.state.goalSteps}
+                         dailyStepGoal={this.state.dailyStepGoal} />
               ) : ''}
             </div>
             <div className={s.rightColumn}>

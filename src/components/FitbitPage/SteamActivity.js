@@ -28,15 +28,23 @@ class SteamActivity extends Component {
   }
 
   loadRecentlyPlayed(steamId) {
-    Steam.getRecentlyPlayedGames(steamId).then((data) => {
-      var games = data.response.games;
-      var totalMinutes = 0;
-      for (var i = 0; i < games.length; i++) {
-        totalMinutes = totalMinutes + games[i].playtime_2weeks;
-      }
-      this.setState({games: games, totalGameMinutes: totalMinutes});
-      this.props.onSteamGameTimeUpdate(totalMinutes);
-    }.bind(this));
+    Steam.getRecentlyPlayedGames(steamId).
+          then(this.onRecentlyPlayedFetch.bind(this)).
+          then(undefined, this.onRecentlyPlayedError.bind(this));
+  }
+
+  onRecentlyPlayedFetch(data) {
+    var games = data.response.games;
+    var totalMinutes = 0;
+    for (var i = 0; i < games.length; i++) {
+      totalMinutes = totalMinutes + games[i].playtime_2weeks;
+    }
+    this.setState({games: games, totalGameMinutes: totalMinutes});
+    this.props.onSteamGameTimeUpdate(totalMinutes);
+  }
+
+  onRecentlyPlayedError(err) {
+    console.error('failed to fetch recently played Steam games', err);
   }
 
   saveSteamId(steamId) {
