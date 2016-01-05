@@ -3286,6 +3286,14 @@ module.exports =
   
   var _SteamInfo2 = _interopRequireDefault(_SteamInfo);
   
+  var _historyLibParsePath = __webpack_require__(26);
+  
+  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
+  
+  var _coreLocation = __webpack_require__(27);
+  
+  var _coreLocation2 = _interopRequireDefault(_coreLocation);
+  
   var title = 'Your Activity over the Last 2 Weeks';
   
   var FitbitPage = (function (_Component) {
@@ -3333,22 +3341,50 @@ module.exports =
     }, {
       key: 'componentDidMount',
       value: function componentDidMount() {
-        var _this = this;
-  
         var token = _storesLocalStorage2['default'].get('token');
-        _actionsFitbit2['default'].getProfile(token).then((function (data) {
-          _this.setState({ profile: data.user });
-        }).bind(this));
+        _actionsFitbit2['default'].getProfile(token).then(this.onFitbitProfileFetch.bind(this, token)).then(undefined, this.onFitbitProfileError.bind(this));
+      }
+    }, {
+      key: 'onFitbitActivityFetch',
+      value: function onFitbitActivityFetch(goalsXhr, data) {
+        var steps = data['activities-steps'];
+        goalsXhr.then(this.onFitbitGoalsFetch.bind(this, steps)).then(undefined, this.onFitbitGoalsError.bind(this));
+      }
+    }, {
+      key: 'onFitbitActivityError',
+      value: function onFitbitActivityError(err) {
+        console.error('failed to load Fitbit activity', err);
+      }
+    }, {
+      key: 'onFitbitGoalsFetch',
+      value: function onFitbitGoalsFetch(steps, data) {
+        if (!data.goals) {
+          console.error('could not get Fitbit goals from response', data);
+          return;
+        }
+        var dailyStepGoal = data.goals.steps;
+        this.setState({ goalSteps: dailyStepGoal * 14,
+          steps: this.sumSteps(steps),
+          dailyStepGoal: dailyStepGoal });
+      }
+    }, {
+      key: 'onFitbitGoalsError',
+      value: function onFitbitGoalsError(err) {
+        console.error('failed to load Fitbit goals', err);
+      }
+    }, {
+      key: 'onFitbitProfileFetch',
+      value: function onFitbitProfileFetch(token, data) {
+        this.setState({ profile: data.user });
         var goalsXhr = _actionsFitbit2['default'].getDailyGoals(token);
-        _actionsFitbit2['default'].getActivitySinceDate(token, this.state.stepCutoffDate).then((function (data) {
-          var steps = data['activities-steps'];
-          goalsXhr.then((function (data) {
-            var dailyStepGoal = data.goals.steps;
-            _this.setState({ goalSteps: dailyStepGoal * 14,
-              steps: _this.sumSteps(steps),
-              dailyStepGoal: dailyStepGoal });
-          }).bind(_this));
-        }).bind(this));
+        _actionsFitbit2['default'].getActivitySinceDate(token, this.state.stepCutoffDate).then(this.onFitbitActivityFetch.bind(this, goalsXhr)).then(undefined, this.onFitbitActivityError.bind(this));
+      }
+    }, {
+      key: 'onFitbitProfileError',
+      value: function onFitbitProfileError(err) {
+        console.error('failed to load Fitbit profile', err);
+        _storesLocalStorage2['default']['delete']('token');
+        _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])('/')));
       }
     }, {
       key: 'sumSteps',
@@ -3420,7 +3456,11 @@ module.exports =
                   _react2['default'].createElement('img', { className: _FitbitPageScss2['default'].fitbitLogo, src: __webpack_require__(47), width: '16', height: '16', alt: 'Fitbit' }),
                   'Fitbit'
                 ),
-                haveProfile ? _react2['default'].createElement(_Profile2['default'], _extends({}, this.state.profile, { stepCutoffDate: this.state.stepCutoffDate, steps: this.state.steps, goalSteps: this.state.goalSteps, dailyStepGoal: this.state.dailyStepGoal })) : ''
+                haveProfile ? _react2['default'].createElement(_Profile2['default'], _extends({}, this.state.profile, {
+                  stepCutoffDate: this.state.stepCutoffDate,
+                  steps: this.state.steps,
+                  goalSteps: this.state.goalSteps,
+                  dailyStepGoal: this.state.dailyStepGoal })) : ''
               ),
               _react2['default'].createElement(
                 'div',
@@ -3585,7 +3625,7 @@ module.exports =
     }, {
       key: 'makeRequest',
       value: function makeRequest(token, path) {
-        var url, response, data;
+        var url, response, data, error;
         return regeneratorRuntime.async(function makeRequest$(context$2$0) {
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
@@ -3599,14 +3639,26 @@ module.exports =
   
             case 3:
               response = context$2$0.sent;
-              context$2$0.next = 6;
+  
+              if (!(response.status >= 200 && response.status < 300)) {
+                context$2$0.next = 9;
+                break;
+              }
+  
+              context$2$0.next = 7;
               return regeneratorRuntime.awrap(response.json());
   
-            case 6:
+            case 7:
               data = context$2$0.sent;
               return context$2$0.abrupt('return', data);
   
-            case 8:
+            case 9:
+              error = new Error(response.statusText);
+  
+              error.response = response;
+              throw error;
+  
+            case 12:
             case 'end':
               return context$2$0.stop();
           }
@@ -4035,17 +4087,23 @@ module.exports =
     }, {
       key: 'loadRecentlyPlayed',
       value: function loadRecentlyPlayed(steamId) {
-        var _this = this;
-  
-        _actionsSteam2['default'].getRecentlyPlayedGames(steamId).then((function (data) {
-          var games = data.response.games;
-          var totalMinutes = 0;
-          for (var i = 0; i < games.length; i++) {
-            totalMinutes = totalMinutes + games[i].playtime_2weeks;
-          }
-          _this.setState({ games: games, totalGameMinutes: totalMinutes });
-          _this.props.onSteamGameTimeUpdate(totalMinutes);
-        }).bind(this));
+        _actionsSteam2['default'].getRecentlyPlayedGames(steamId).then(this.onRecentlyPlayedFetch.bind(this)).then(undefined, this.onRecentlyPlayedError.bind(this));
+      }
+    }, {
+      key: 'onRecentlyPlayedFetch',
+      value: function onRecentlyPlayedFetch(data) {
+        var games = data.response.games;
+        var totalMinutes = 0;
+        for (var i = 0; i < games.length; i++) {
+          totalMinutes = totalMinutes + games[i].playtime_2weeks;
+        }
+        this.setState({ games: games, totalGameMinutes: totalMinutes });
+        this.props.onSteamGameTimeUpdate(totalMinutes);
+      }
+    }, {
+      key: 'onRecentlyPlayedError',
+      value: function onRecentlyPlayedError(err) {
+        console.error('failed to fetch recently played Steam games', err);
       }
     }, {
       key: 'saveSteamId',
