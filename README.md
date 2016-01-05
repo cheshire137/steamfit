@@ -28,4 +28,5 @@ Visit [localhost:3000](http://localhost:3000/).
 1. `heroku config:set STEAM_API_KEY="your Steam Web API Key"`
 1. `heroku config:set FITBIT_CLIENT_ID="your Fitbit OAuth 2.0 client ID"`
 1. `npm run build`
+1. `git add build/ && git commit -m "Update build/"`
 1. `git subtree push --prefix build heroku master`
