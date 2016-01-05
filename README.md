@@ -6,6 +6,13 @@ Correlate your Steam activity with your Fitbit activity.
 
 ## How to Develop
 
+I'm using the following versions:
+
+    % node --version
+    v5.3.0
+    % npm --version
+    3.3.12
+
 Register a [Fitbit application](https://dev.fitbit.com/apps/new). Set your
 'OAuth 2.0 Application Type' to 'Client'. Set your 'Callback URL' to
 `http://localhost:3000/auth`. 'Default Access Type' should be 'Read-Only'.
